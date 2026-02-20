@@ -47,6 +47,7 @@ export async function handleMessage(
   const analysis = analyzeScam(scammerText);
   session.scamScore += analysis.score * 1.2;
   session.redFlags.push(...analysis.flags);
+  session.scamType = analysis.scamType || "unknown";
 
   // Extract intelligence
   const entities = extractEntities(scammerText);
@@ -57,7 +58,10 @@ export async function handleMessage(
   });
 
   // Generate reply
-  const reply = generateProbe();
+  const reply = generateProbe(
+  session.scamType,
+  session.messages.length
+);
 
   // Store agent reply 
   session.messages.push({
