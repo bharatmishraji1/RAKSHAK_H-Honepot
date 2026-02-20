@@ -7,7 +7,6 @@ RUN npm install
 
 COPY . .
 
-# Build TypeScript properly
 RUN npm run build
 
 EXPOSE 8080
