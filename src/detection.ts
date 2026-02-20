@@ -1,47 +1,27 @@
 export function analyzeScam(text: string) {
   const lower = text.toLowerCase();
 
-  const keywords = [
-    "otp",
-    "urgent",
-    "verify",
-    "kyc",
-    "upi",
-    "bank",
-    "account",
-    "refund",
-    "suspend",
-    "click",
-    "link",
-    "payment",
-    "transfer",
-    "fee",
-    "reward",
-    "lottery"
-  ];
-
   let score = 0;
   let flags: string[] = [];
+  let scamType = "unknown";
 
-  keywords.forEach(word => {
-    if (lower.includes(word)) {
-      score += 0.12;
-      flags.push(`Suspicious keyword: ${word}`);
-    }
-  });
-
-  if (/https?:\/\/[^\s]+/.test(text)) {
-    score += 0.3;
-    flags.push("Suspicious link detected");
+  if (/otp|verify|account blocked|urgent|transaction/.test(lower)) {
+    score += 0.4;
+    flags.push("OTP / urgency pattern");
+    scamType = "bank_fraud";
   }
 
-  if (/\b\d{4,6}\b/.test(text) && lower.includes("otp")) {
-    score += 0.25;
-    flags.push("OTP request detected");
+  if (/upi|cashback|reward|scan qr|refund/.test(lower)) {
+    score += 0.4;
+    flags.push("UPI cashback pattern");
+    scamType = "upi_fraud";
   }
 
-  return {
-    score: Math.min(score, 1),
-    flags
-  };
+  if (/http|www|\.com|link|offer|click/.test(lower)) {
+    score += 0.4;
+    flags.push("Phishing link detected");
+    scamType = "phishing";
+  }
+
+  return { score, flags, scamType };
 }
