@@ -2,7 +2,7 @@
   "name": "rakshak-h-ai-scam-honeypot",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "tsx src/server.ts",
     "build": "tsc",
