@@ -18,4 +18,5 @@ export interface SessionState {
   scamScore: number;
   questionCount: number;
   finalSubmitted?: boolean;
+  scamType?: string;
 }
