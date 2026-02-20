@@ -1,98 +1,61 @@
 export function generateProbe(scamType: string, step: number) {
 
   const bankFlow = [
-    // Clarification
-    "I am a bit confused. Which exact department are you calling from?",
-    "My banking app is asking which branch this is from. Can you confirm?",
-    "Can you repeat your full name and designation once more?",
-
-    // Authority verification
-    "It is asking for your employee ID before I proceed. Can you share it?",
-    "App is requesting official branch address for verification. What should I enter?",
-    "It shows unknown caller warning. Can you share official website link?",
-
-    // Dependency trap
-    "My app says beneficiary must be verified with IFSC. Can you provide IFSC?",
-    "It is showing receiver verification pending. Can you confirm bank name again?",
-    "It says account needs branch confirmation. Which branch is this linked to?",
-
-    // Time waste
-    "OTP came but disappeared. Can you generate another one?",
-    "It says mismatch error. Is there alternate account or backup UPI?",
-    "It is asking whether this is NEFT, RTGS or IMPS. Which one should I select?",
-
-    // Extraction push
-    "My manager is asking for case reference email. Can you send official email ID?",
-    "Is there a registered helpline number I can verify from website?",
-    "App asking for transaction reference ID from your side. Can you share?",
-    "Can you confirm the official SMS short code used by your bank?",
-
-    // Escalation
-    "RBI website says banks never ask OTP. Why are you asking?",
-    "If this is urgent, can you send official SMS from SBI short code?",
-    "Why are you refusing to share verifiable ID if this is official?"
+    "Which exact department are you calling from?",
+    "Can you spell your full name slowly for verification?",
+    "My app is asking for your employee ID. What should I enter?",
+    "It needs branch IFSC code to verify beneficiary. Can you provide it?",
+    "Can you repeat the account number slowly digit by digit?",
+    "It says branch address required. What is full official address?",
+    "App asking for case reference number. Can you confirm?",
+    "It shows mismatch error. Can you resend the account details?",
+    "Is there alternate account number in case this fails?",
+    "My manager wants official website URL for verification.",
+    "It says SMS short code must match bank records. What is it?",
+    "Can you confirm registered customer care number?",
+    "Is there official support email I can confirm from?",
+    "It is asking for transaction reference ID from your side.",
+    "RBI guidelines say banks never ask OTP. Why are you asking?",
+    "If urgent, can you send official SMS from bank short code?",
+    "Why are you avoiding verifiable identity details?"
   ];
 
   const upiFlow = [
-    // Clarification
-    "Is this cashback or refund? I did not request anything.",
-    "Which UPI ID should I verify on my app?",
-    "Is this UPI collect request or direct transfer?",
-
-    // Verification
-    "App asking for receiver VPA confirmation. Can you repeat the UPI ID?",
+    "Which UPI ID should I verify exactly?",
+    "Can you spell the UPI ID slowly character by character?",
     "Is there alternate UPI ID if this one fails?",
-    "It is asking whether merchant account or personal account. Which one?",
-
-    // Dependency trap
-    "It says receiver not verified. Can you share linked phone number?",
-    "App asking for bank name linked to this UPI. Can you confirm?",
-    "Is this request coming from business account?",
-
-    // Time waste
-    "Payment showing pending approval. Can you cancel and resend?",
-    "It says limit exceeded. Should I split into two transfers?",
+    "App asking for linked bank name to this UPI.",
+    "It says receiver phone number must match records. Can you confirm?",
+    "Is this merchant account or personal account?",
+    "It shows mismatch in VPA format. Can you resend correctly?",
+    "Do you have GST number for this merchant?",
+    "Is there official support email for confirmation?",
+    "Payment showing pending. Can you cancel and resend collect request?",
+    "Should I split into two transfers due to limit issue?",
     "I received two collect requests. Which one is correct?",
-
-    // Extraction push
-    "My app is asking for merchant GST number. Can you provide?",
-    "Is there official support email I can confirm from?",
-    "Can you confirm registered customer care number again?",
-
-    // Escalation
-    "Why is RBI warning saying never approve unknown UPI collect?",
+    "Can you confirm registered helpline number?",
+    "App is asking for transaction reference from your side.",
+    "Why is RBI warning against unknown UPI requests?",
     "If genuine, can you send confirmation from official domain email?"
   ];
 
   const phishingFlow = [
-    // Clarification
-    "Is this offer available on official app also?",
-    "Can you confirm full company name?",
-    "Is this listed on your official website homepage?",
-
-    // Verification
-    "Why does this URL look slightly different from official one?",
-    "Can you share company registration or GST number?",
-    "Is there official support email to verify this offer?",
-
-    // Dependency trap
-    "It says payment gateway not secure. Which payment provider is this?",
-    "App warning says domain recently registered. Can you confirm?",
-    "Is this COD available or only online payment?",
-
-    // Time waste
-    "Page is not loading properly. Can you resend new link?",
-    "It shows certificate warning. Is there alternate link?",
-    "It is asking for card details. Is UPI available instead?",
-
-    // Extraction push
-    "Can you confirm customer support number listed for this offer?",
-    "Is there refund policy page I can review?",
-    "Can you share order reference ID before I proceed?",
-
-    // Escalation
-    "Why is browser showing phishing alert?",
-    "If official, can you send link from verified email domain?"
+    "Can you confirm full company legal name?",
+    "Can you share GST or registration number?",
+    "Why does this URL look different from official domain?",
+    "Is this offer listed on homepage?",
+    "Can you resend full link including https?",
+    "Is there official customer care number listed?",
+    "Can you provide support email for verification?",
+    "It shows SSL certificate warning. Is there alternate secure link?",
+    "Is payment gateway Razorpay or PayU?",
+    "Does this support COD option?",
+    "Can you confirm refund policy page URL?",
+    "App is asking for order reference ID.",
+    "Can you confirm merchant ID used for this offer?",
+    "Browser is showing phishing alert. Why?",
+    "If official, can you send from verified domain email?",
+    "Why is this domain recently registered?"
   ];
 
   const flows: any = {
